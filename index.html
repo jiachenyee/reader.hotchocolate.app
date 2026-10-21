@@ -1,0 +1,51 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+body{margin:0;background:#faf7ff;font:20px/1.8 Georgia,serif}
+main{max-width:900px;margin:auto;padding:60px;position:relative}
+#reader{color:transparent;user-select:text;user-select: none;-webkit-user-select: none;}
+#reader *::selection{color:#000;background:#bcd}
+#overlay{position:absolute;inset:60px;pointer-events:none;color:#2b1d40}
+.char{display:inline-block;position:relative}
+h1,h2{margin:1em 0}
+</style></head><body><main>
+<article id="reader">
+    <section>
+        <h1>THE PURPLE PARADE</h1>
+    </section>
+    <section>
+        <h2>Singapore’s largest movement to support inclusion and celebrate abilities of Persons with Disabilities.</h2>
+    </section>
+    <section>
+        <h2>Our Vision</h2>
+        <p>Our vision is for the spirit of the movement to continue for many more years to come; and for Persons with Disabilities to be fully included, valued and celebrated in our country.</p>
+    </section>
+    <section>
+        <h2>What is The Purple Parade?</h2>
+        <p>THE PURPLE PARADE, founded in 2013, is a unifying national platform to promote awareness and celebrate abilities of Persons with Disabilities. The core of The Purple Parade movement seeks to ensure that Persons with Disabilities are included in the main chapter of Singapore’s growth and have equal access to education, employment, transport and social networks.</p>
+    </section>
+    <section>
+        <p>It is a ground-up movement spearheaded by various organisations from the People, Public and Private, and supported by the Central Singapore Community Development Council (CDC) and The Purple Parade Limited (TPPL).</p>
+    </section>
+    <section>
+        <h2>The 5 Cs of The Purple Parade</h2>
+        <p>The Purple Parade unites Singapore through Campaigns, Carnivals, Concerts, Contingents, and Conversations, building a nation that celebrates and includes Persons with Disabilities at every step.</p>
+    </section>
+</article>
+<div id="overlay" aria-hidden="true"></div>
+</main><script>
+const ov=document.getElementById('overlay');
+function r(a,b){return Math.random()*(b-a)+a;}
+document.querySelectorAll('#reader section').forEach(sec=>{
+ let d=document.createElement('div');
+ let h=sec.querySelector('h1,h2');if(h){let hh=document.createElement(h.tagName.toLowerCase());paint(h.textContent,hh,1.6);d.appendChild(hh);}
+ sec.querySelectorAll('p').forEach(p=>{let pp=document.createElement('p');paint(p.textContent,pp,1);d.appendChild(pp);});
+ ov.appendChild(d);
+});
+function paint(text,parent,base){
+ [...text].forEach(ch=>{
+ let s=document.createElement('span');s.className='char';s.textContent=ch;
+ if(ch!=' '){s.style.fontSize=(base*r(.8,1.4))+'em';s.style.transform=`translate(${r(-5,5)}px,${r(-6,6)}px) rotate(${r(-32,32)}deg)`;}
+ parent.appendChild(s);
+ });
+}
+</script></body></html>
