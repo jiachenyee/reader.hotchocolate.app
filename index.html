@@ -9,43 +9,53 @@ main{max-width:900px;margin:auto;padding:60px;position:relative}
 h1,h2{margin:1em 0}
 </style></head><body><main>
 <article id="reader">
-    <section>
-        <h1>THE PURPLE PARADE</h1>
-    </section>
-    <section>
-        <h2>Singapore’s largest movement to support inclusion and celebrate abilities of Persons with Disabilities.</h2>
-    </section>
-    <section>
-        <h2>Our Vision</h2>
-        <p>Our vision is for the spirit of the movement to continue for many more years to come; and for Persons with Disabilities to be fully included, valued and celebrated in our country.</p>
-    </section>
-    <section>
-        <h2>What is The Purple Parade?</h2>
-        <p>THE PURPLE PARADE, founded in 2013, is a unifying national platform to promote awareness and celebrate abilities of Persons with Disabilities. The core of The Purple Parade movement seeks to ensure that Persons with Disabilities are included in the main chapter of Singapore’s growth and have equal access to education, employment, transport and social networks.</p>
-    </section>
-    <section>
-        <p>It is a ground-up movement spearheaded by various organisations from the People, Public and Private, and supported by the Central Singapore Community Development Council (CDC) and The Purple Parade Limited (TPPL).</p>
-    </section>
-    <section>
-        <h2>The 5 Cs of The Purple Parade</h2>
-        <p>The Purple Parade unites Singapore through Campaigns, Carnivals, Concerts, Contingents, and Conversations, building a nation that celebrates and includes Persons with Disabilities at every step.</p>
-    </section>
+    <h1>Safari Reader</h1>
+    <p>Safari Reader is a built-in view in Safari on iPad, iPhone and Mac that hides navigation menus and other distracting items, reformatting the page to show just the relevant text and images. On a supported website, tap the Page Menu button next to the address field and choose Show Reader; on Mac, press Shift-Command-R. On longer pages, Safari Reader also generates a summary and a table of contents.</p>
+    <br>
+    <br>
+    <p>For students, the value is in reducing load. A research task on a cluttered reference or news site asks a learner to filter signal from noise before comprehension can begin. Safari Reader removes that filtering step so attention goes to the content. It can be set to open automatically for a trusted site through Website Settings, or for every supported site under Settings > Apps > Safari > Reader > All Websites, useful when a teacher wants a predictable reading environment across a class set.</p>
+    <br>
+    <p>Safari Reader pairs with other features already on the device. In Safari, Listen to Page reads a supported page aloud. For learners who need typographic control, Accessibility Reader (Settings > Accessibility > Read & Speak) is the stronger option: it presents text from any app in a full-screen view with adjustable fonts, layouts and background colours, and can read it aloud. On Apple Intelligence-capable iPad models, it can also summarise and translate text.</p>
+    <br>
+    <br>
+    <p>Two practical notes for classroom use. Safari Reader is not available on every page; it depends on how the site is built, so pages that are mainly navigation or interactive content will not convert. Second, Reader hides the surrounding page, including context students may need to judge a source, so teach them to check the publication and date before switching in.</p>
 </article>
 <div id="overlay" aria-hidden="true"></div>
 </main><script>
-const ov=document.getElementById('overlay');
-function r(a,b){return Math.random()*(b-a)+a;}
-document.querySelectorAll('#reader section').forEach(sec=>{
- let d=document.createElement('div');
- let h=sec.querySelector('h1,h2');if(h){let hh=document.createElement(h.tagName.toLowerCase());paint(h.textContent,hh,1.6);d.appendChild(hh);}
- sec.querySelectorAll('p').forEach(p=>{let pp=document.createElement('p');paint(p.textContent,pp,1);d.appendChild(pp);});
- ov.appendChild(d);
+
+const ov = document.getElementById('overlay');
+
+function r(a, b) {
+  return Math.random() * (b - a) + a;
+}
+
+const reader = document.getElementById('reader');
+
+reader.querySelectorAll('h1, h2, p, br').forEach(el => {
+  if (el.tagName === 'BR') {
+    ov.appendChild(document.createElement('br'));
+    return;
+  }
+
+  const clone = document.createElement(el.tagName.toLowerCase());
+  const base = el.tagName === 'H1' ? 1.6 : 1;
+
+  paint(el.textContent, clone, base);
+  ov.appendChild(clone);
 });
-function paint(text,parent,base){
- [...text].forEach(ch=>{
- let s=document.createElement('span');s.className='char';s.textContent=ch;
- if(ch!=' '){s.style.fontSize=(base*r(.8,1.4))+'em';s.style.transform=`translate(${r(-5,5)}px,${r(-6,6)}px) rotate(${r(-32,32)}deg)`;}
- parent.appendChild(s);
- });
+
+function paint(text, parent, base) {
+  [...text].forEach(ch => {
+    const s = document.createElement('span');
+    s.className = 'char';
+    s.textContent = ch;
+
+    if (ch !== ' ') {
+      s.style.fontSize = (base * r(0.8, 1.4)) + 'em';
+      s.style.transform = `translate(${r(-5, 5)}px, ${r(-6, 6)}px) rotate(${r(-32, 32)}deg)`;
+    }
+
+    parent.appendChild(s);
+  });
 }
 </script></body></html>
